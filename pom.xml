@@ -63,6 +63,25 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.9.11</version> <!-- Use the latest stable version -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.9.11</version> <!-- Use the compatible version -->
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <mutationThreshold>70</mutationThreshold>
+                   <outputFormat>
+                   	<outputFormat>XML</outputFormat>
+                   	<outputFormat>HTML</outputFormat>
+                   </outputFormat>
+                </configuration>
             </plugin>			
 		</plugins>
 	</build>

@@ -21,9 +21,11 @@ pipeline {
         }
       stage('Docker build and push') {
             steps {
-              sh 'printenv'
-              sh 'docker build -t chandikas/numbericapp:""$GIT_COMMIT"" .'
-              sh 'docker push chandikas/numbericapp:""$GIT_COMMIT""'
+              withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
+                sh 'printenv'
+                sh 'docker build -t chandikas/numbericapp:""$GIT_COMMIT"" .'
+                sh 'docker push chandikas/numbericapp:""$GIT_COMMIT""'
+                }                
               }
             }
     }

@@ -18,6 +18,13 @@ pipeline {
                 jacoco execPattern: 'target/jacoco.exec'
               }
             }
-        }   
+        }
+      stage('Docker build and push') {
+            steps {
+              sh 'printenv'
+              sh 'docker build -t chandikas/numbericapp:""$GIT_COMMIT"" .'
+              sh 'docker push chandikas/numbericapp:""$GIT_COMMIT""'
+              }
+            }
     }
 }
